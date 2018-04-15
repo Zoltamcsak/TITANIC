@@ -29,7 +29,7 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public Passenger save(Passenger passenger) {
-        return null;
+        return passengerRepository.save(passenger);
     }
 
     @Override
@@ -39,6 +39,6 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Override
     public void delete(Long id) {
-
+        passengerRepository.deleteById(id);
     }
 }
