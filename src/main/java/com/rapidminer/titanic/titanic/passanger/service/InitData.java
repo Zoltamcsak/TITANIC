@@ -1,15 +1,10 @@
 package com.rapidminer.titanic.titanic.passanger.service;
 
-import com.rapidminer.titanic.titanic.TitanicApplication;
 import com.rapidminer.titanic.titanic.passanger.Passenger;
 import com.rapidminer.titanic.titanic.utils.CSVReader;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
@@ -24,12 +19,14 @@ public class InitData {
         this.passengerService = passengerService;
     }
 
+    /**
+     * Loads the content of the file and saves it into the DB
+     */
     @PostConstruct
-    public void init() throws IOException {
+    public void init() {
         String filename = "/assets/titanic.csv";
         URL resource = InitData.class.getResource(filename);
         List<Passenger> passengers = reader.getPassengersFromFile(resource.getPath());
         passengerService.save(passengers);
-        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + passengers.size());
     }
 }
