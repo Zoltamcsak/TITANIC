@@ -28,8 +28,8 @@ public class PassengerResource {
 
     @PostMapping("/passengers")
     public ResponseEntity<Passenger> createPassenger(@RequestBody Passenger passenger) {
-        passengerService.save(passenger);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Passenger result = passengerService.save(passenger);
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/spendings/{id}")

@@ -17,9 +17,16 @@ const styles = theme => ({
   },
 });
 
-const formStyle = {
+const formFieldsStyle = {
   display: 'flex',
   flexDirection: 'column'
+};
+
+const modalDivStyle = {
+  left: '35%',
+  top: '5%',
+  bottom: '5%',
+  overflow: 'auto'
 };
 
 class PassengerModal extends Component {
@@ -68,124 +75,126 @@ class PassengerModal extends Component {
     return (
       <Modal open={this.props.open}
              onClose={this.props.handleClose}>
-        <div className={classes.paper}>
-          <form onSubmit={this.handleSubmit} style={formStyle}>
-            <TextField
-              id="passengerClass"
-              name="passengerClass"
-              label="Passenger class"
-              className={classes.textField}
-              value={this.state.form.passengerClass}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <TextField
-              id="name"
-              name="name"
-              label="Name"
-              className={classes.textField}
-              value={this.state.form.name}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <Select
-              value={this.state.form.sex}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'age',
-                id: 'age',
-              }}>
-              <MenuItem value={'Male'}>Male</MenuItem>
-              <MenuItem value={'Female'}>Female</MenuItem>
-            </Select>
-            <TextField
-            id="age"
-            name="age"
-            label="Age"
-            type="number"
-            className={classes.textField}
-            value={this.state.form.age}
-            onChange={this.handleChange}
-            margin="normal"
-          />
-            <TextField
-              id="nrOfSiblings"
-              name="nrOfSiblings"
-              label="Nr of siblings"
+        <div className={classes.paper} style={modalDivStyle}>
+          <form onSubmit={this.handleSubmit}>
+            <div className={'form-fields'} style={formFieldsStyle}>
+              <TextField
+                id="passengerClass"
+                name="passengerClass"
+                label="Passenger class"
+                className={classes.textField}
+                value={this.state.form.passengerClass}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="name"
+                name="name"
+                label="Name"
+                className={classes.textField}
+                value={this.state.form.name}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <Select
+                value={this.state.form.sex}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'age',
+                  id: 'age',
+                }}>
+                <MenuItem value={'Male'}>Male</MenuItem>
+                <MenuItem value={'Female'}>Female</MenuItem>
+              </Select>
+              <TextField
+              id="age"
+              name="age"
+              label="Age"
               type="number"
               className={classes.textField}
-              value={this.state.form.nrOfSiblings}
+              value={this.state.form.age}
               onChange={this.handleChange}
               margin="normal"
             />
-            <TextField
-              id="nrOfParent"
-              name="nrOfParent"
-              label="Nr of parent"
-              type="number"
-              className={classes.textField}
-              value={this.state.form.nrOfParent}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <TextField
-              id="ticketNumber"
-              name="ticketNumber"
-              label="Ticket number"
-              className={classes.textField}
-              value={this.state.form.ticketNumber}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <TextField
-              id="fare"
-              name="fare"
-              label="Fare"
-              className={classes.textField}
-              value={this.state.form.fare}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <TextField
-              id="cabin"
-              name="cabin"
-              label="Cabin"
-              className={classes.textField}
-              value={this.state.form.cabin}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <TextField
-              id="embarkation"
-              name="embarkation"
-              label="Embarkation"
-              className={classes.textField}
-              value={this.state.form.embarkation}
-              onChange={this.handleChange}
-              margin="normal"
-            />
-            <InputLabel htmlFor="lifeBoat">Life boat</InputLabel>
-            <Select
-              value={this.state.form.lifeBoat}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'lifeBoat',
-                id: 'lifeBoat',
-              }}>
-              <MenuItem value='true'>Yes</MenuItem>
-              <MenuItem value='false'>No</MenuItem>
-            </Select>
-            <InputLabel htmlFor="survived">Survived</InputLabel>
-            <Select
-              value={this.state.form.survived}
-              onChange={this.handleChange}
-              inputProps={{
-                name: 'survived',
-                id: 'survived',
-              }}>
-              <MenuItem value='true'>Yes</MenuItem>
-              <MenuItem value='false'>No</MenuItem>
-            </Select>
+              <TextField
+                id="nrOfSiblings"
+                name="nrOfSiblings"
+                label="Nr of siblings"
+                type="number"
+                className={classes.textField}
+                value={this.state.form.nrOfSiblings}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="nrOfParent"
+                name="nrOfParent"
+                label="Nr of parent"
+                type="number"
+                className={classes.textField}
+                value={this.state.form.nrOfParent}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="ticketNumber"
+                name="ticketNumber"
+                label="Ticket number"
+                className={classes.textField}
+                value={this.state.form.ticketNumber}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="fare"
+                name="fare"
+                label="Fare"
+                className={classes.textField}
+                value={this.state.form.fare}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="cabin"
+                name="cabin"
+                label="Cabin"
+                className={classes.textField}
+                value={this.state.form.cabin}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <TextField
+                id="embarkation"
+                name="embarkation"
+                label="Embarkation"
+                className={classes.textField}
+                value={this.state.form.embarkation}
+                onChange={this.handleChange}
+                margin="normal"
+              />
+              <InputLabel htmlFor="lifeBoat">Life boat</InputLabel>
+              <Select
+                value={this.state.form.lifeBoat}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'lifeBoat',
+                  id: 'lifeBoat',
+                }}>
+                <MenuItem value='true'>Yes</MenuItem>
+                <MenuItem value='false'>No</MenuItem>
+              </Select>
+              <InputLabel htmlFor="survived">Survived</InputLabel>
+              <Select
+                value={this.state.form.survived}
+                onChange={this.handleChange}
+                inputProps={{
+                  name: 'survived',
+                  id: 'survived',
+                }}>
+                <MenuItem value='true'>Yes</MenuItem>
+                <MenuItem value='false'>No</MenuItem>
+              </Select>
+            </div>
             <Button type='submit'>Add</Button>
           </form>
         </div>
