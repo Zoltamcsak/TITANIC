@@ -2,6 +2,11 @@ export const FETCH_PASSENGERS = 'FETCH_PASSENGERS';
 export const ADD_PASSENGER = 'ADD_PASSENGER';
 export const ERROR_LOADING = 'ERROR_LOADING';
 
+/**
+ * Action creator for fetching passengers.
+ * It uses redux-promise to convert result from promise to Passenger
+ * @returns {{type: string, payload: Promise<any>}}
+ */
 export function fetchPassengers() {
   const passengers = fetch('/api/passengers')
     .then(response => response.json())
@@ -12,6 +17,11 @@ export function fetchPassengers() {
   }
 }
 
+/**
+ * Action creator for adding a new passenger
+ * @param passenger
+ * @returns {{type: string, payload: Promise<any>}}
+ */
 export function addPassenger(passenger) {
   const passengerPromise = fetch('/api/passengers', {
     method: 'POST',
