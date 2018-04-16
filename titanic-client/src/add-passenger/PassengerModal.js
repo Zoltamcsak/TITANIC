@@ -203,5 +203,4 @@ class PassengerModal extends Component {
   }
 }
 
-// We need an intermediary variable for handling the recursive nesting.
 export default PassengerModal = withStyles(styles)(PassengerModal);
