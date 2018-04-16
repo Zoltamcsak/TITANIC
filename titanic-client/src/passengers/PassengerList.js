@@ -2,29 +2,16 @@ import PassengerItem from './PassengerItem';
 import React, {Component} from 'react';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import {fetchPassengers} from '../store/actions/PassengerActions';
+import { connect } from 'react-redux'
 
-export default class PassengerList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      passengers: [],
-      loading: true
-    };
-  }
-
+class PassengerList extends Component {
   componentDidMount() {
-    fetch('/api/passengers')
-      .then(response => response.json())
-      .then(result => {
-        this.setState({
-          passengers: result,
-          loading: false
-        });
-      });
+    this.props.getPassengers();
   }
 
   render() {
-    if (this.state.loading) {
+    if (this.props.loading) {
       return <p>Loading</p>
     }
     return (
@@ -43,7 +30,7 @@ export default class PassengerList extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.passengers.map(passenger => {
+            {this.props.passengers.map(passenger => {
                 return <PassengerItem key={passenger.id} passenger={passenger}/>
               }
             )}
@@ -53,3 +40,16 @@ export default class PassengerList extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    passengers: state.passengerReducer.passengers,
+    loading: state.passengerReducer.loading
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  getPassengers: () => dispatch(fetchPassengers())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PassengerList);

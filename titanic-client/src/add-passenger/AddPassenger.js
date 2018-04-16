@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import Button from 'material-ui/Button';
 import PassengerModal from './PassengerModal';
+import {addPassenger} from '../store/actions/PassengerActions';
+import {connect} from 'react-redux';
 
-export default class AddPassenger extends Component {
+class AddPassenger extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,17 +25,7 @@ export default class AddPassenger extends Component {
   };
 
   handleSubmit = (passenger) => {
-    this.setState({
-      dialogOpen: false
-    });
-    fetch('/api/passengers', {
-      method: 'POST',
-      body: JSON.stringify(passenger),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(console.log);
+    this.props.addPassenger(passenger);
     this.handleClose()
   };
 
@@ -48,3 +40,9 @@ export default class AddPassenger extends Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => ({
+  addPassenger: (passenger) => dispatch(addPassenger(passenger))
+});
+
+export default connect(null, mapDispatchToProps)(AddPassenger);
